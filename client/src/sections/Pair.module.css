@@ -1,6 +1,108 @@
 .pair {
-  padding: 112px 0;
+  position: relative;
+  padding: 104px 0;
+  overflow: clip;
 }
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* ---------- section intro ---------- */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.kickerRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+}
+
+.kickerLine {
+  width: 54px;
+  height: 1px;
+  background: var(--acc);
+  opacity: 0.4;
+}
+
+.intro h2 {
+  font-size: 44px;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.intro h2 :global(.script) {
+  font-size: 1.04em;
+}
+
+.intro p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--mut);
+  max-width: 560px;
+}
+
+/* ---------- foliage ---------- */
+
+.floralTopLeft,
+.floralMidLeft,
+.floralBottomLeft,
+.floralTopRight,
+.floralMidRight,
+.floralBottomRight {
+  position: absolute;
+  width: 178px;
+  height: 178px;
+  color: var(--acc);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.floralTopLeft {
+  top: 24px;
+  left: -46px;
+}
+
+.floralMidLeft {
+  top: 36%;
+  left: -72px;
+}
+
+.floralBottomLeft {
+  bottom: 8%;
+  left: -38px;
+  transform: rotate(180deg);
+}
+
+.floralTopRight {
+  top: 18px;
+  right: -46px;
+  transform: scaleX(-1);
+}
+
+.floralMidRight {
+  top: 38%;
+  right: -72px;
+  transform: scaleX(-1);
+}
+
+.floralBottomRight {
+  bottom: 6%;
+  right: -38px;
+  transform: scaleX(-1) rotate(180deg);
+}
+
+/* ---------- panels ---------- */
 
 .grid {
   display: grid;
@@ -9,32 +111,71 @@
 }
 
 .panel {
+  position: relative;
   border-radius: 24px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-.panel :global(.placeholder) {
-  border-radius: 0;
-  height: 260px;
+.photo {
+  position: relative;
 }
 
-.body {
-  padding: 40px 44px 44px;
+.photo :global(.placeholder),
+.photo img {
+  width: 100%;
+  height: 292px;
+  border-radius: 0;
+}
+
+.photoNote {
+  position: absolute;
+  right: 24px;
+  bottom: 54px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-end;
+  gap: 1px;
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.24;
+}
+
+.heart {
+  font-style: normal;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* The body lifts over the photo so its rounded top corners cut into the
+   image, softening the join between the two. */
+.body {
+  position: relative;
+  margin-top: -26px;
+  border-radius: 26px 26px 0 0;
+  padding: 30px 34px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   flex-grow: 1;
 }
 
-.panel h2 {
-  font-size: 40px;
-  line-height: 1.1;
+.panel h3 {
+  font-size: 34px;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+}
+
+/* Keeps the accent phrase on its own line rather than wrapping mid-phrase. */
+.panel h3 :global(.script) {
+  display: block;
+  font-size: 1.04em;
 }
 
 .panel p {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.65;
 }
 
@@ -51,45 +192,108 @@
   gap: 10px;
 }
 
-.dark {
-  background: var(--dark);
-  color: var(--cream);
+.ticks svg {
+  flex-shrink: 0;
 }
 
-.dark :global(.placeholder) {
-  background-color: #3b261b;
-  background-image: none;
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.footnote {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footnoteLine {
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.footnoteText {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+
+/* ---------- tones ---------- */
+
+.dark .body {
+  background: var(--dark);
+  color: var(--cream);
 }
 
 .dark p {
   color: #d9c7b5;
 }
 
-.dark :global(.script) {
-  color: var(--dark-acc);
-}
-
+.dark :global(.script),
 .dark :global(.kicker) {
   color: var(--dark-acc);
 }
 
+.dark .ticks svg {
+  color: var(--dark-acc);
+}
+
+.dark .photoNote {
+  color: rgba(251, 244, 234, 0.92);
+  text-shadow: 0 1px 8px rgba(43, 24, 16, 0.45);
+}
+
+.dark .footnote {
+  color: #b39d8b;
+}
+
 .light {
-  background: var(--paper);
   border: 1px solid var(--line);
+}
+
+.light .body {
+  background: var(--paper);
 }
 
 .light p {
   color: var(--mut);
 }
 
-.body :global(.btn) {
-  align-self: flex-start;
-  margin-top: auto;
+.light .ticks svg {
+  color: var(--acc);
+}
+
+.light .photoNote {
+  color: rgba(74, 51, 38, 0.95);
+  text-shadow: 0 1px 10px rgba(255, 251, 245, 0.8);
+}
+
+.light .footnote {
+  color: var(--mut);
 }
 
 @container site (max-width: 1100px) {
   .pair {
     padding: 88px 0;
+  }
+  .floralTopLeft,
+  .floralMidLeft,
+  .floralBottomLeft,
+  .floralTopRight,
+  .floralMidRight,
+  .floralBottomRight {
+    display: none;
+  }
+  .intro h2 {
+    font-size: 38px;
   }
   .grid {
     grid-template-columns: 1fr;
@@ -100,23 +304,38 @@
   .pair {
     padding: 64px 0;
   }
+  .inner {
+    gap: 36px;
+  }
+  .intro h2 {
+    font-size: 30px;
+  }
   .grid {
     gap: 20px;
   }
-  .panel :global(.placeholder) {
-    height: 200px;
+  .photo :global(.placeholder),
+  .photo img {
+    height: 210px;
+  }
+  .photoNote {
+    right: 16px;
+    bottom: 26px;
+    font-size: 13px;
   }
   .body {
-    padding: 28px 24px 30px;
+    padding: 26px 24px 30px;
   }
-  .panel h2 {
-    font-size: 30px;
+  .panel h3 {
+    font-size: 28px;
   }
   .ticks {
     grid-template-columns: 1fr;
   }
-  .body :global(.btn) {
-    align-self: stretch;
+  .ctaRow {
+    gap: 16px;
+  }
+  .ctaRow :global(.btn) {
+    width: 100%;
     white-space: normal;
     text-align: center;
     height: auto;
