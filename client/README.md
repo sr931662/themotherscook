@@ -84,13 +84,19 @@ design tokens as CSS custom properties on `:root`.
 - **Reviews**: `src/data/reviews.ts` — replace the bracketed placeholder quotes
   with real Google reviews.
 - **Corporate / Satvik panel copy**: `src/data/pair.ts`
-- **Photos**: every image in the design is currently a labelled placeholder
-  box (`PlaceholderPhoto` component). Drop real photos into `src/assets/` and
-  swap the `PlaceholderPhoto` usages in the relevant section for `<img>` tags
-  (with explicit `width`/`height` and `loading="lazy"`, matching the existing
-  masked/rounded treatment in each section's CSS module).
-- **Logo**: `src/components/Logo.tsx` is currently a placeholder "TMC" circle;
-  swap it for a real logo image when available.
+- **Photos**: real photos live in `src/assets/` (`the mothers cook cover.jpg`,
+  `plate.jpg`, `kitchen mom.jpg`, `boxes.jpg`, `no onion.jpg`,
+  `daal pouring.jpg`) and are wired into Hero / OccasionBand / Story / Pair /
+  CookingStandards via the `PlaceholderPhoto` component's `src` prop. To
+  replace one: drop the new file into `src/assets/`, update the `import` in
+  the relevant section, and pass the new file's real pixel `width`/`height`
+  to `PlaceholderPhoto` (used as the `<img>` attributes for CLS). Convert new
+  photos to `.jpg` (quality ~80–85) before adding them — the originals here
+  were ~2MB PNGs each and are now ~200–300KB. `PlaceholderPhoto` still
+  supports its no-`src` labelled-box mode for any future placeholder.
+- **Logo**: `src/components/Logo.tsx` renders `src/assets/logo.png` — a
+  240×240 transparent PNG (background removed via a circular alpha mask, see
+  git history if you need to redo this for a replacement logo).
 
 ## WhatsApp / call links
 

@@ -1,23 +1,66 @@
 .band {
-  padding: 72px 0;
+  position: relative;
+  padding: 96px 0 72px;
   background: var(--cream);
+  overflow: clip;
 }
 
 .grid {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.15fr 1fr 0.7fr;
-  gap: 48px;
+  grid-template-columns: 1.3fr 1.05fr 0.85fr;
+  gap: 40px;
   align-items: center;
 }
 
-.imgWrap {
+/* ---------- image ---------- */
+
+/* The padding is what offsets the photo down-and-right of the backdrop card,
+   so the photo overhangs the backdrop's right and bottom edges. */
+.imageArea {
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  height: 300px;
+  padding: 34px 0 30px 42px;
 }
 
-.imgWrap :global(.placeholder) {
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 62px;
+  bottom: 0;
+  background: var(--cream-2);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(193, 80, 46, 0.05) 0 1px,
+    transparent 1px 14px
+  );
+  border-radius: 22px;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: -76px;
+  width: 116px;
+  height: 116px;
+  color: var(--acc);
+  z-index: 3;
+}
+
+.photoLayer {
+  position: relative;
+  z-index: 1;
+}
+
+.imgWrap {
+  border-radius: 18px;
+  overflow: hidden;
+  height: 320px;
+  box-shadow: 0 18px 36px rgba(43, 24, 16, 0.14);
+}
+
+.imgWrap :global(.placeholder),
+.imgWrap img {
   width: 100%;
   height: 100%;
   border-radius: 0;
@@ -25,23 +68,83 @@
 
 .tag {
   position: absolute;
-  right: 0;
-  top: 36px;
-  bottom: 36px;
+  right: -8px;
+  top: 17%;
+  bottom: 17%;
   width: 150px;
-  background: rgba(251, 244, 234, 0.95);
+  background: rgba(251, 244, 234, 0.97);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  padding: 20px;
+  padding: 22px;
   font-family: var(--font-script);
   font-style: italic;
-  font-size: 24px;
-  line-height: 1.15;
+  font-size: 22px;
+  line-height: 1.18;
   color: var(--ink);
-  border-radius: 12px 0 0 12px;
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(43, 24, 16, 0.12);
 }
+
+.tagLine {
+  display: block;
+  width: 32px;
+  height: 1.5px;
+  background: var(--acc);
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+.pill {
+  position: absolute;
+  left: -20px;
+  bottom: -14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 251, 245, 0.97);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mut);
+  white-space: nowrap;
+  box-shadow: 0 10px 22px rgba(43, 24, 16, 0.1);
+}
+
+.pillDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--acc);
+  flex-shrink: 0;
+}
+
+.floralImgTop,
+.floralImgBottom {
+  position: absolute;
+  width: 152px;
+  height: 152px;
+  color: var(--acc);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.floralImgTop {
+  top: -30px;
+  right: -12px;
+}
+
+.floralImgBottom {
+  bottom: -14px;
+  left: -52px;
+  transform: rotate(180deg);
+}
+
+/* ---------- copy ---------- */
 
 .copy {
   display: flex;
@@ -50,8 +153,22 @@
   align-items: flex-start;
 }
 
+.kickerRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.kickerLine {
+  width: 72px;
+  height: 1px;
+  background: var(--acc);
+  opacity: 0.4;
+}
+
 .copy h2 {
-  font-size: 38px;
+  font-size: 42px;
   line-height: 1.1;
 }
 
@@ -61,30 +178,63 @@
   color: var(--mut);
 }
 
-.stats {
-  background: var(--cream-2);
-  border-radius: 16px;
-  padding: 26px 28px;
+/* ---------- stats ---------- */
+
+.statsCard {
+  position: relative;
+  overflow: hidden;
+  background: rgba(245, 233, 218, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 6px 26px;
+}
+
+/* Pushed mostly outside the card so only the leaf tips read along its edges,
+   instead of crossing the dividers and competing with the figures. */
+.floralStatsLeft,
+.floralStatsRight {
+  position: absolute;
+  top: 50%;
+  width: 140px;
+  height: 140px;
+  color: var(--acc);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.floralStatsLeft {
+  left: -96px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.floralStatsRight {
+  right: -96px;
+  transform: translateY(-50%);
+}
+
+.statsList {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 22px;
 }
 
 .stat {
   display: flex;
   align-items: center;
   gap: 16px;
+  padding: 18px 0;
 }
 
-.stat svg {
-  color: var(--acc);
+.stat:not(:last-child) {
+  border-bottom: 1px solid var(--line);
 }
 
 .stat b {
   display: block;
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 24px;
+  font-size: 26px;
   color: var(--acc);
   line-height: 1.1;
 }
@@ -94,12 +244,14 @@
   color: var(--mut);
 }
 
+/* ---------- quote ---------- */
+
 .quoteLine {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 24px;
-  padding-top: 48px;
+  padding-top: 56px;
 }
 
 .quoteLine i {
@@ -118,59 +270,118 @@
 }
 
 @container site (max-width: 1100px) {
+  .band {
+    padding: 80px 0 64px;
+  }
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px;
   }
-  .imgWrap {
+  .imageArea {
     grid-column: 1 / -1;
+    padding: 28px 0 26px 34px;
+  }
+  /* Below desktop the seal sits over the photo, so it gets a disc behind it
+     to stay legible — the same colour as the section, so it reads as a
+     backing here and stays invisible on the plain background above. */
+  .badge {
+    top: -10px;
+    left: -14px;
+    width: 96px;
+    height: 96px;
+    background: var(--cream);
+    border-radius: 50%;
+  }
+  .floralImgTop,
+  .floralImgBottom,
+  .floralStatsLeft,
+  .floralStatsRight {
+    display: none;
+  }
+  .imgWrap {
     height: 360px;
   }
-  .stats {
+  .copy h2 {
+    font-size: 36px;
+  }
+  .statsCard {
+    padding: 6px 20px;
+  }
+  .statsList {
+    flex-direction: row;
+  }
+  .stat {
+    flex: 1;
     flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 18px 12px;
+  }
+  .stat:not(:last-child) {
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+  }
+  .stat b {
+    font-size: 21px;
+    white-space: nowrap;
   }
 }
 
 @container site (max-width: 640px) {
   .band {
-    padding: 48px 0;
+    padding: 56px 0 48px;
   }
   .grid {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+  .imageArea {
+    padding: 20px 0 18px 22px;
+  }
+  .badge {
+    width: 80px;
+    height: 80px;
+    top: -8px;
+    left: -6px;
+  }
   .imgWrap {
     height: 240px;
+    border-radius: 16px;
   }
   .tag {
-    width: 120px;
-    font-size: 19px;
-    padding: 14px;
-    top: 24px;
-    bottom: 24px;
+    width: 116px;
+    right: -4px;
+    font-size: 18px;
+    padding: 16px;
+  }
+  .pill {
+    left: -10px;
+    bottom: -12px;
+    font-size: 10px;
+    padding: 9px 14px;
+    white-space: normal;
   }
   .copy h2 {
     font-size: 30px;
   }
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    padding: 18px 12px;
+  .statsCard {
+    padding: 6px 16px;
+  }
+  .statsList {
+    flex-direction: column;
   }
   .stat {
-    flex-direction: column;
-    text-align: center;
-    gap: 6px;
+    flex-direction: row;
+    text-align: left;
+    gap: 14px;
+    padding: 14px 0;
   }
-  .stat b {
-    font-size: 18px;
-  }
-  .stat span {
-    font-size: 12px;
+  .stat:not(:last-child) {
+    border-bottom: 1px solid var(--line);
+    border-right: none;
   }
   .quoteLine {
-    padding-top: 36px;
+    padding-top: 40px;
     gap: 12px;
   }
   .quoteLine i {

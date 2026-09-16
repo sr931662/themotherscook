@@ -1,31 +1,102 @@
 .story {
-  padding: 112px 0;
+  position: relative;
+  padding: 104px 0;
   background: var(--cream-2);
+  overflow: clip;
 }
 
 .grid {
+  position: relative;
   display: grid;
-  grid-template-columns: 5fr 6fr;
-  gap: 88px;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 68px;
   align-items: center;
 }
 
-.media {
+/* ---------- image ---------- */
+
+/* The padding offsets the photo down-and-right of the backdrop card, so the
+   photo overhangs the backdrop's right and bottom edges. */
+.imageArea {
   position: relative;
+  padding: 40px 0 34px 46px;
 }
 
-.media :global(.placeholder) {
-  height: 600px;
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 56px;
+  bottom: 0;
+  /* A step warmer than the section behind it, since this section's own
+     background is already the darker cream. */
+  background: #eddecb;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(193, 80, 46, 0.05) 0 1px,
+    transparent 1px 14px
+  );
+  border-radius: 22px;
+}
+
+.badge {
+  position: absolute;
+  top: 40px;
+  left: -80px;
+  width: 116px;
+  height: 116px;
+  color: var(--acc);
+  z-index: 3;
+}
+
+.floralTop,
+.floralBottom {
+  position: absolute;
+  width: 152px;
+  height: 152px;
+  color: var(--acc);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.floralTop {
+  top: -34px;
+  right: -18px;
+}
+
+.floralBottom {
+  bottom: 10%;
+  left: -58px;
+  transform: rotate(180deg);
+}
+
+.photoLayer {
+  position: relative;
+  z-index: 1;
+}
+
+.imgWrap {
+  border-radius: 18px;
+  overflow: hidden;
+  height: 480px;
+  box-shadow: 0 20px 40px rgba(43, 24, 16, 0.14);
+}
+
+.imgWrap :global(.placeholder),
+.imgWrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
 }
 
 .since {
   position: absolute;
-  right: -24px;
-  bottom: 44px;
+  right: -32px;
+  bottom: 13%;
   background: var(--acc);
   color: #ffffff;
-  border-radius: 16px;
-  padding: 16px 22px;
+  border-radius: 14px;
+  padding: 14px 24px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -44,28 +115,143 @@
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: 28px;
+  white-space: nowrap;
 }
+
+.pill {
+  position: absolute;
+  left: -16px;
+  bottom: 16px;
+  background: rgba(255, 251, 245, 0.97);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mut);
+  white-space: nowrap;
+  box-shadow: 0 10px 22px rgba(43, 24, 16, 0.1);
+}
+
+/* ---------- copy ---------- */
 
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.kickerRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.kickerLine {
+  width: 72px;
+  height: 1px;
+  background: var(--acc);
+  opacity: 0.4;
+}
+
+.copy h2 {
+  font-size: 42px;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.copy h2 :global(.script) {
+  font-size: 1.04em;
 }
 
 .copy p {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.7;
   color: #4a3326;
 }
 
-.pull {
+.quote {
+  display: flex;
+  gap: 14px;
+  margin: 4px 0;
+  padding: 4px 0 4px 26px;
+  border-left: 2px solid rgba(193, 80, 46, 0.32);
+}
+
+.quoteMark {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 0.82;
+  color: var(--acc);
+  opacity: 0.5;
+}
+
+.quote blockquote {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: 26px;
-  line-height: 1.35;
+  font-size: 21px;
+  line-height: 1.4;
   color: var(--ink);
-  padding-top: 24px;
-  border-top: 1px solid #e2cfb9;
+}
+
+.quote figcaption {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.play {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.playCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  box-shadow: 0 6px 16px rgba(43, 24, 16, 0.08);
+  flex-shrink: 0;
+}
+
+.playText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.playText b {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.playText span {
+  font-size: 13px;
+  color: var(--mut);
 }
 
 @container site (max-width: 1100px) {
@@ -74,13 +260,34 @@
   }
   .grid {
     grid-template-columns: 1fr;
-    gap: 56px;
+    gap: 48px;
   }
-  .media :global(.placeholder) {
+  .imageArea {
+    padding: 28px 0 26px 34px;
+  }
+  /* Below desktop the seal sits over the photo, so it gets a disc behind it
+     to stay legible — the same colour as the section, so it reads as a
+     backing here and stays invisible on the plain background above. */
+  .badge {
+    top: -10px;
+    left: -14px;
+    width: 96px;
+    height: 96px;
+    background: var(--cream-2);
+    border-radius: 50%;
+  }
+  .floralTop,
+  .floralBottom {
+    display: none;
+  }
+  .imgWrap {
     height: 440px;
   }
   .since {
-    right: 24px;
+    right: -16px;
+  }
+  .copy h2 {
+    font-size: 38px;
   }
 }
 
@@ -89,23 +296,52 @@
     padding: 64px 0;
   }
   .grid {
-    gap: 40px;
+    gap: 36px;
   }
-  .media :global(.placeholder) {
-    height: 380px;
+  .imageArea {
+    padding: 20px 0 18px 22px;
+  }
+  .badge {
+    width: 78px;
+    height: 78px;
+    top: -10px;
+    left: -8px;
+  }
+  .imgWrap {
+    height: 360px;
+    border-radius: 16px;
   }
   .since {
-    right: 16px;
-    bottom: 16px;
-    padding: 12px 16px;
+    right: -8px;
+    bottom: 16%;
+    padding: 12px 18px;
   }
   .since b {
     font-size: 22px;
   }
+  .pill {
+    left: -10px;
+    bottom: 12px;
+    font-size: 10px;
+    padding: 9px 14px;
+  }
+  .copy h2 {
+    font-size: 30px;
+  }
   .copy p {
     font-size: 16px;
   }
-  .pull {
-    font-size: 21px;
+  .quote {
+    padding-left: 18px;
+    gap: 10px;
+  }
+  .quote blockquote {
+    font-size: 18px;
+  }
+  .actions {
+    gap: 16px;
+  }
+  .actions :global(.btn) {
+    width: 100%;
   }
 }

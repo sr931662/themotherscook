@@ -3,6 +3,10 @@
   background: linear-gradient(90deg, #fbf1e4 0%, #fbf1e4 45%, #f6e3ce 100%);
 }
 
+.heroInner {
+  position: relative;
+}
+
 .heroImg {
   position: absolute;
   top: 0;
@@ -21,64 +25,107 @@
   border-radius: 0;
 }
 
+/* Left-anchored with a fixed gutter (not centered like the shared .wrap),
+   so the copy always sits a fixed distance from the true left edge of the
+   viewport while the image bleeds edge-to-edge on the right — instead of
+   both being squeezed into a centered max-width column with a growing
+   empty gap on ultra-wide screens.
+
+   The vertical padding is also cqi-driven (not a flat px value): browser
+   zoom shrinks the viewport's width and height by the same factor, and
+   this container's inline-size (cqi) tracks that width shrink — so tying
+   vertical spacing to cqi makes it shrink in step with the shrinking
+   viewport height too, keeping the whole hero in proportion to the
+   viewport at any zoom level instead of overflowing it. */
 .inner {
   position: relative;
-  padding-top: 64px;
-  padding-bottom: 60px;
+  padding-left: 120px;
+  padding-top: clamp(20px, min(4.44cqi, 6.27dvh), 64px);
+  padding-bottom: clamp(18px, min(4.17cqi, 5.88dvh), 60px);
 }
 
+/* Fluid instead of a fixed 700px: shrinks with the container (which tracks
+   real viewport width — including browser zoom, since zoom changes the
+   effective CSS pixel width) so it never outgrows the space left by the
+   image bleeding in from the right. min() keeps the 700px look at the
+   1440px reference width and above, never growing wider than that. */
 .copy {
-  width: 700px;
+  width: min(700px, 48.6cqi);
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: clamp(10px, min(1.94cqi, 2.75dvh), 28px);
 }
 
+/* clamp() ties every one of these to both the container's inline size
+   (cqi) and the viewport's block size (dvh) — width AND height — via
+   min(), so type scales continuously with real viewport/zoom changes on
+   either axis instead of jumping at hard breakpoints, and never relies
+   on width alone (which stops shrinking once cqi exceeds the 1440px
+   reference, even if zoom has shrunk the viewport's height). The
+   min/max bounds reproduce the old mobile-floor and desktop-reference
+   sizes almost exactly. */
 .h1 {
-  font-size: 76px;
+  font-size: clamp(28px, min(5.3cqi, 7.45dvh), 76px);
   line-height: 1.02;
 }
 
 .h1 .script {
   display: inline-block;
-  font-size: 84px;
+  font-size: clamp(32px, min(5.85cqi, 8.24dvh), 84px);
   line-height: 1.1;
 }
 
 .flourish {
-  width: 380px;
+  width: clamp(220px, 26.4cqi, 380px);
   margin-top: -6px;
   color: var(--acc);
 }
 
 .lead {
-  font-size: 20px;
+  font-size: clamp(14px, min(1.4cqi, 1.96dvh), 20px);
   line-height: 1.6;
   color: #4a3326;
-  max-width: 620px;
+  max-width: min(620px, 100%);
 }
 
+/* auto-fit lets the row drop from 4 columns to 3/2 as space tightens,
+   instead of a fixed 4-up grid that would force the row wider than its
+   container and overflow behind the hero image at in-between widths. */
 .feats {
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: start;
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(10px, min(1.94cqi, 2.75dvh), 28px);
 }
 
 .feat {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, min(0.83cqi, 1.18dvh), 12px);
   font-size: 15px;
   line-height: 1.35;
   color: #4a3326;
 }
 
+/* Scoped shrink of the shared .iconCircle utility, just for the hero's
+   feature row, so it can join the rest of the hero's vertical rhythm in
+   scaling down with the viewport without touching that class anywhere
+   else on the page. */
+.feat :global(.iconCircle) {
+  width: clamp(30px, min(3.33cqi, 4.71dvh), 48px);
+  height: clamp(30px, min(3.33cqi, 4.71dvh), 48px);
+}
+
 .ctaRow {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: clamp(10px, min(1.67cqi, 2.35dvh), 24px);
   flex-wrap: wrap;
+}
+
+/* Scoped shrink of the shared .btn utility's height, just here — every
+   other button on the page keeps its fixed 60px height. */
+.ctaRow :global(.btn) {
+  height: clamp(40px, min(4.17cqi, 5.88dvh), 60px);
 }
 
 .play {
@@ -91,8 +138,8 @@
 }
 
 .playCircle {
-  width: 56px;
-  height: 56px;
+  width: clamp(34px, min(3.89cqi, 5.49dvh), 56px);
+  height: clamp(34px, min(3.89cqi, 5.49dvh), 56px);
   border-radius: 50%;
   background: var(--paper);
   border: 1px solid var(--line);
@@ -123,7 +170,7 @@
 .proof {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: clamp(10px, min(1.53cqi, 2.16dvh), 22px);
   flex-wrap: wrap;
   font-size: 15px;
   color: #4a3326;
@@ -142,7 +189,7 @@
 
 .sep {
   width: 1px;
-  height: 24px;
+  height: clamp(12px, min(1.67cqi, 2.35dvh), 24px);
   background: var(--line);
 }
 
@@ -166,6 +213,8 @@
 @container site (max-width: 1100px) {
   .hero {
     background: #fbf1e4;
+  }
+  .heroInner {
     display: flex;
     flex-direction: column;
   }
@@ -173,8 +222,8 @@
     order: 2;
     position: relative;
     width: 100%;
-    height: 480px;
-    margin-top: 48px;
+    height: clamp(220px, 47dvh, 480px);
+    margin-top: clamp(20px, 4.7dvh, 48px);
   }
   .heroImg img,
   .heroImg .placeholder {
@@ -182,17 +231,13 @@
     mask-image: linear-gradient(180deg, transparent 0%, #000 18%);
   }
   .inner {
-    padding-top: 56px;
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-top: clamp(24px, 5.49dvh, 56px);
     padding-bottom: 0;
   }
   .copy {
     width: 100%;
-  }
-  .h1 {
-    font-size: 68px;
-  }
-  .h1 .script {
-    font-size: 76px;
   }
   .note {
     top: 70px;
@@ -202,31 +247,25 @@
   }
   .feats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px 24px;
+    gap: clamp(10px, 1.76dvh, 18px) clamp(14px, 2.35dvh, 24px);
     max-width: 560px;
   }
 }
 
 @container site (max-width: 640px) {
   .inner {
-    padding-top: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: clamp(18px, 3.14dvh, 32px);
   }
   .copy {
     gap: 22px;
   }
   .h1 {
-    font-size: 40px;
     line-height: 1.08;
   }
-  .h1 .script {
-    font-size: 44px;
-  }
   .flourish {
-    width: 220px;
     margin-top: -4px;
-  }
-  .lead {
-    font-size: 16px;
   }
   .ctaRow {
     flex-direction: column;
@@ -278,8 +317,8 @@
     display: none;
   }
   .heroImg {
-    height: 360px;
-    margin-top: 28px;
+    height: clamp(160px, 35.3dvh, 360px);
+    margin-top: clamp(14px, 2.75dvh, 28px);
   }
   .note {
     display: none;

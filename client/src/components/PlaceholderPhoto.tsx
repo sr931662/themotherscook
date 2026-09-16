@@ -2,17 +2,46 @@ interface PlaceholderPhotoProps {
   label: string
   className?: string
   background?: string
+  /** Real photo source. When provided, renders the image instead of the placeholder box. */
+  src?: string
+  alt?: string
+  width?: number
+  height?: number
 }
 
-/** Labelled placeholder box standing in for a photo asset not yet supplied. */
-export function PlaceholderPhoto({ label, className = '', background }: PlaceholderPhotoProps) {
+/**
+ * Renders a real photo when `src` is supplied, and falls back to a labelled
+ * placeholder box (standing in for an asset not yet supplied) otherwise.
+ */
+export function PlaceholderPhoto({
+  label,
+  className = '',
+  background,
+  src,
+  alt,
+  width,
+  height,
+}: PlaceholderPhotoProps) {
+  const wrapperClassName = `placeholder ${className}`.trim()
+  const wrapperStyle = background ? { backgroundColor: background } : undefined
+
+  if (src) {
+    return (
+      <div className={wrapperClassName} style={wrapperStyle}>
+        <img
+          src={src}
+          alt={alt ?? label}
+          width={width}
+          height={height}
+          loading="lazy"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      </div>
+    )
+  }
+
   return (
-    <div
-      className={`placeholder ${className}`.trim()}
-      style={background ? { backgroundColor: background } : undefined}
-      role="img"
-      aria-label={label}
-    >
+    <div className={wrapperClassName} style={wrapperStyle} role="img" aria-label={label}>
       <span className="placeholderLabel" aria-hidden="true">
         {label}
       </span>

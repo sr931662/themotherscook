@@ -1,4 +1,6 @@
 import styles from './Pair.module.css'
+import boxesImg from '../assets/boxes.jpg'
+import noOnionImg from '../assets/no onion.jpg'
 import { FadeUp } from '../components/FadeUp'
 import { PlaceholderPhoto } from '../components/PlaceholderPhoto'
 import { ArrowRight, Check, WhatsApp } from '../components/icons'
@@ -11,15 +13,29 @@ function Panel({
   tone,
   id,
   occasion,
+  photoSrc,
+  photoAlt,
+  photoWidth,
+  photoHeight,
 }: {
   data: PanelData
   tone: 'dark' | 'light'
   id?: string
   occasion: string
+  photoSrc: string
+  photoAlt: string
+  photoWidth: number
+  photoHeight: number
 }) {
   return (
     <div className={`${styles.panel} ${tone === 'dark' ? styles.dark : styles.light}`} id={id}>
-      <PlaceholderPhoto label={data.photoLabel} />
+      <PlaceholderPhoto
+        label={data.photoLabel}
+        src={photoSrc}
+        alt={photoAlt}
+        width={photoWidth}
+        height={photoHeight}
+      />
       <div className={styles.body}>
         <span className={`kicker ${data.kickerAccent ? 'acc' : ''}`}>{data.kicker}</span>
         <h2 className="serif">
@@ -53,8 +69,25 @@ export function Pair() {
   return (
     <section className={styles.pair}>
       <FadeUp as="div" className={`wrap ${styles.grid}`}>
-        <Panel data={corporatePanel} tone="dark" id="corporate" occasion="Corporate catering" />
-        <Panel data={satvikPanel} tone="light" occasion="Satvik menu" />
+        <Panel
+          data={corporatePanel}
+          tone="dark"
+          id="corporate"
+          occasion="Corporate catering"
+          photoSrc={boxesImg}
+          photoAlt="Boxed The Mothers Cook meals on a boardroom table"
+          photoWidth={1672}
+          photoHeight={941}
+        />
+        <Panel
+          data={satvikPanel}
+          tone="light"
+          occasion="Satvik menu"
+          photoSrc={noOnionImg}
+          photoAlt="A satvik thali with diya and marigolds"
+          photoWidth={1536}
+          photoHeight={1024}
+        />
       </FadeUp>
     </section>
   )
