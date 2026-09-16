@@ -1,0 +1,126 @@
+.pair {
+  padding: 112px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.panel {
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel :global(.placeholder) {
+  border-radius: 0;
+  height: 260px;
+}
+
+.body {
+  padding: 40px 44px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.panel h2 {
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.panel p {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.ticks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 20px;
+  font-size: 15px;
+}
+
+.ticks div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dark {
+  background: var(--dark);
+  color: var(--cream);
+}
+
+.dark :global(.placeholder) {
+  background-color: #3b261b;
+  background-image: none;
+}
+
+.dark p {
+  color: #d9c7b5;
+}
+
+.dark :global(.script) {
+  color: var(--dark-acc);
+}
+
+.dark :global(.kicker) {
+  color: var(--dark-acc);
+}
+
+.light {
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.light p {
+  color: var(--mut);
+}
+
+.body :global(.btn) {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+@container site (max-width: 1100px) {
+  .pair {
+    padding: 88px 0;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@container site (max-width: 640px) {
+  .pair {
+    padding: 64px 0;
+  }
+  .grid {
+    gap: 20px;
+  }
+  .panel :global(.placeholder) {
+    height: 200px;
+  }
+  .body {
+    padding: 28px 24px 30px;
+  }
+  .panel h2 {
+    font-size: 30px;
+  }
+  .ticks {
+    grid-template-columns: 1fr;
+  }
+  .body :global(.btn) {
+    align-self: stretch;
+    white-space: normal;
+    text-align: center;
+    height: auto;
+    min-height: 52px;
+    padding: 12px 20px;
+  }
+}

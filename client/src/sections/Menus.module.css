@@ -1,0 +1,139 @@
+.menus {
+  padding: 112px 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.menu {
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menuTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.menuTop :global(.kicker) {
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: var(--acc);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.price b {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.price span {
+  font-size: 14px;
+  color: var(--mut);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.items div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu :global(.tlink) {
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.featured {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #ffffff;
+  box-shadow: 0 20px 40px rgba(193, 80, 46, 0.25);
+}
+
+.featured :global(.kicker),
+.featured .price span,
+.featured :global(.tlink) {
+  color: #ffffff;
+}
+
+.featured :global(.hr) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.featured :global(.dot) {
+  background: #ffffff;
+}
+
+.custom {
+  background: transparent;
+  border: 1.5px dashed #d6b99b;
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--mut);
+  text-align: center;
+}
+
+@container site (max-width: 1100px) {
+  .menus {
+    padding: 88px 0;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container site (max-width: 640px) {
+  .menus {
+    padding: 64px 0;
+  }
+  .inner {
+    gap: 36px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .menu {
+    padding: 26px 24px;
+    gap: 16px;
+  }
+  .price b {
+    font-size: 40px;
+  }
+  .note {
+    font-size: 13px;
+  }
+}

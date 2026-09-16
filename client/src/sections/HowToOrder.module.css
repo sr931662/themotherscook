@@ -1,0 +1,131 @@
+.proc {
+  padding: 104px 0;
+  background: var(--cream-2);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 36px;
+  border-top: 1.5px dashed #d6b99b;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stepCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--acc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(43, 24, 16, 0.06);
+}
+
+.stepCircle.last {
+  background: var(--acc);
+  color: #ffffff;
+  border-color: var(--acc);
+}
+
+.step small {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+
+.step h3 {
+  font-size: 26px;
+}
+
+.step p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mut);
+  padding-right: 12px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+@container site (max-width: 1100px) {
+  .proc {
+    padding: 88px 0;
+  }
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 32px;
+  }
+  .steps::before {
+    display: none;
+  }
+}
+
+@container site (max-width: 640px) {
+  .proc {
+    padding: 64px 0;
+  }
+  .inner {
+    gap: 40px;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .steps::before {
+    display: block;
+    left: 35px;
+    right: auto;
+    top: 36px;
+    bottom: 36px;
+    border-top: 0;
+    border-left: 1.5px dashed #d6b99b;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    column-gap: 18px;
+    row-gap: 4px;
+    padding-bottom: 28px;
+  }
+  .stepCircle {
+    grid-row: span 3;
+    background: var(--cream-2);
+  }
+  .stepCircle.last {
+    background: var(--acc);
+  }
+  .step h3 {
+    font-size: 22px;
+  }
+  .center :global(.btn) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,317 @@
+/* Shared design-system primitives used across multiple sections.
+   Section-specific layout lives in each section's CSS module. */
+
+.wrap {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: 120px;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--acc);
+  letter-spacing: -0.01em;
+}
+
+.hand {
+  font-family: var(--font-hand);
+  color: var(--ink);
+}
+
+.kicker {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.kicker.acc {
+  color: var(--acc);
+}
+
+.muted {
+  color: var(--mut);
+}
+
+.h2 {
+  font-size: 52px;
+  line-height: 1.08;
+}
+
+.h2 .script {
+  font-size: 1.04em;
+}
+
+.lead {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--mut);
+  max-width: 400px;
+}
+
+.flourish {
+  display: block;
+  height: 14px;
+}
+
+.secHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.secHead .secHeadCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 720px;
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 60px;
+  padding: 0 30px;
+  border-radius: var(--radius-pill);
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btnPrimary {
+  background: var(--acc);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(193, 80, 46, 0.28);
+}
+
+.btnPrimary:hover {
+  background: var(--acc-d);
+  color: #ffffff;
+}
+
+.btnOutline {
+  border: 1.5px solid var(--acc);
+  color: var(--acc);
+  background: transparent;
+}
+
+.btnOutline:hover {
+  background: var(--acc);
+  color: #ffffff;
+}
+
+.btnLine {
+  border: 1.5px solid rgba(251, 244, 234, 0.4);
+  color: #fbf4ea;
+  background: transparent;
+}
+
+.btnLine:hover {
+  background: #fbf4ea;
+  color: #2b1810;
+}
+
+.btnCream {
+  background: #fbf4ea;
+  color: #2b1810;
+}
+
+.btnCream:hover {
+  background: #ffffff;
+  color: #2b1810;
+}
+
+.btnSmall {
+  height: 48px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+/* icon circle used for hero features etc. */
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--acc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* placeholder photo box */
+.placeholder {
+  background: #e7d6c1;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(43, 24, 16, 0.05) 0 1px,
+    transparent 1px 14px
+  );
+  display: flex;
+  align-items: flex-end;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.placeholderLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mut);
+  background: rgba(255, 251, 245, 0.94);
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  margin: 14px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--acc);
+}
+
+.tlink:hover {
+  color: var(--acc-d);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--acc);
+  flex-shrink: 0;
+}
+
+.hr {
+  height: 1px;
+  background: var(--line);
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  color: var(--acc);
+}
+
+.vegMark {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--veg-green);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.vegMark span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--veg-green);
+}
+
+/* scroll fade-up reveal — gated behind html.js so a no-JS visitor (or one
+   whose JS hasn't run yet) always sees full content, never stuck at opacity:0 */
+html.js .fadeUp {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+html.js .fadeUp.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .fadeUp {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* container-query root, shared across the whole app shell */
+.site {
+  container-type: inline-size;
+  container-name: site;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--cream);
+  overflow-x: hidden;
+}
+
+@container site (max-width: 1100px) {
+  .wrap {
+    padding-inline: 48px;
+  }
+  .h2 {
+    font-size: 44px;
+  }
+  .secHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .lead {
+    max-width: 560px;
+  }
+}
+
+@container site (max-width: 640px) {
+  .wrap {
+    padding-inline: 20px;
+  }
+  .kicker {
+    font-size: 12px;
+    letter-spacing: 0.26em;
+  }
+  .h2 {
+    font-size: 34px;
+  }
+  .lead {
+    font-size: 16px;
+  }
+  .iconCircle {
+    width: 44px;
+    height: 44px;
+  }
+}

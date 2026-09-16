@@ -1,0 +1,38 @@
+:root {
+  /* brand */
+  --acc: #c1502e;
+  --acc-d: #9e3f22;
+  --ink: #2b1810;
+  --mut: #6b5343;
+  --line: #eadccb;
+  --soft: #f4e4d1;
+  --cream: #fbf4ea;
+  --cream-2: #f5e9da;
+  --paper: #fffbf5;
+
+  /* dark sections */
+  --dark: #2b1810;
+  --dark-2: #21120c;
+  --dark-acc: #ee9a74;
+
+  /* accents */
+  --veg-green: #2f7a3e;
+  --star-gold: #e9a23b;
+  --whatsapp: #1f8a4c;
+
+  /* type */
+  --font-serif: 'Libre Caslon Text', Georgia, serif;
+  --font-script: 'Playfair Display', Georgia, serif;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+  --font-sans: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+
+  /* layout */
+  --container-max: 1440px;
+
+  /* radii */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+}

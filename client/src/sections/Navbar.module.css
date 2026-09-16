@@ -1,0 +1,223 @@
+.nav {
+  height: 84px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brandName {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.brandSub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.links a {
+  position: relative;
+  padding: 8px 0;
+}
+
+.links a:hover {
+  color: var(--acc);
+}
+
+.links a.active {
+  color: var(--acc);
+}
+
+.links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--acc);
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.menuBtn {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.menuBtn:hover {
+  background: var(--soft);
+}
+
+.phoneIcon {
+  display: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  align-items: center;
+  justify-content: center;
+  color: var(--acc);
+}
+
+/* Drawer */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 24, 16, 0.4);
+  z-index: 50;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(320px, 84vw);
+  background: var(--paper);
+  z-index: 51;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 24px 32px;
+  box-shadow: -12px 0 32px rgba(43, 24, 16, 0.18);
+}
+
+.drawerHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.drawerClose {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.drawerClose:hover {
+  background: var(--soft);
+}
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawerLinks a {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.drawerLinks a.active {
+  color: var(--acc);
+}
+
+.drawerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+@container site (max-width: 1100px) {
+  .links,
+  .phone {
+    display: none;
+  }
+  .menuBtn,
+  .phoneIcon {
+    display: flex;
+  }
+  .navRight {
+    gap: 12px;
+  }
+  .nav {
+    height: 80px;
+  }
+}
+
+@container site (max-width: 640px) {
+  .nav {
+    height: 72px;
+  }
+  .brandName {
+    font-size: 19px;
+  }
+  .brandSub {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+  }
+  .phoneIcon {
+    display: none;
+  }
+  .navRight :global(.btn) {
+    display: none;
+  }
+}
