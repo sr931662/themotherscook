@@ -97,6 +97,11 @@ design tokens as CSS custom properties on `:root`.
 - **Logo**: `src/components/Logo.tsx` renders `src/assets/logo.png` — a
   240×240 transparent PNG (background removed via a circular alpha mask, see
   git history if you need to redo this for a replacement logo).
+- **Favicons**: `public/favicon.ico` (16/32/48), `public/favicon-32.png`,
+  `public/favicon-192.png` and `public/apple-touch-icon.png` are all
+  generated from `src/assets/logo.png`. If the logo changes, regenerate all
+  four and keep the apple-touch icon flattened onto the cream background
+  (`#FBF4EA`) — iOS ignores alpha there. They're wired up in `index.html`.
 
 ## WhatsApp / call links
 
